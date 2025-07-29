@@ -1,0 +1,9 @@
+name: "print-on-release"
+
+on:
+  release:
+      types: [published]
+  
+jobs:
+  call-workflow:
+    uses: ./.github/workflows/print-event.yml
