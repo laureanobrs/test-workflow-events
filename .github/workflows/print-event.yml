@@ -1,0 +1,25 @@
+name: print-event
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  print-events:
+    name: Print events
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Print triggering event
+        run: > 
+          echo "Triggered by event: ${{ github.event_name }}"
+      
+  print-only-on-release:
+    name: Print only on releases
+    runs-on: ubuntu-22.04
+    if: ${{ github.event_name == 'release' }}
+    steps:
+      - name: Print dummy line
+        run: echo "I was executed because of a release event"
+    
